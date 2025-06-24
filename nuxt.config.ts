@@ -1,0 +1,54 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  hooks: {
+    'builder:watch': (event, path) => {
+      if (path.endsWith('.md')) {
+        // Логика для перезапуска сервера
+        // Например, можно вызвать хук 'restart'
+        // Однако, прямой вызов 'restart' может быть недоступен в этом контексте
+        // Альтернативно, можно использовать другие методы для перезапуска
+      }
+    }
+  },
+  
+  modules: ['@nuxt/content', '@nuxt/image', '@pinia/nuxt'],
+  compatibilityDate: '2025-05-15',
+  devtools: { enabled: true },
+  css: ['~/assets/css/main.css'],
+  content:{
+    watch: {
+      enabled: true,
+      port: 3001,
+      showURL: true,
+    },
+    build:{
+      markdown: {
+        highlight: {
+          // Theme used in all color schemes.
+          theme: {
+            // Default theme (same as single string)
+            default: 'gruvbox-dark-hard',
+            // github-dark, github-light, monokai
+          },
+          langs: [
+            'c',
+            'cpp',
+            'java',
+            'python',
+            'rust',
+            'rs',
+            'js',
+            'go',
+            'sql'
+          ]
+        },
+        remarkPlugins: {},
+        
+      }
+    }
+    // Options
+  },
+  image: {
+    quality: 80
+  }
+})

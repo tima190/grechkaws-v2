@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  /* background-color: #90D1CA; */
+  /* color: #096B68; */
+  font-style: italic;
+  border: 2px solid #096B68;
+  transition: background 0.2s;
+}
+
+table thead {
+  /* background-color: #72BEB6; */
+}
+
+table th, 
+table td {
+  padding: 8px 12px;
+  border: 1px solid #096B68;
+  text-align: left;
+}
+
+table th {
+  font-weight: bold;
+}
+
+table a {
+  /* color: #064f4d; */
+  text-decoration: underline;
+}
+
+table a:hover {
+  /* color: #033735; */
+  text-decoration: none;
+}
