@@ -14,11 +14,7 @@
         <li class="menu-wrapper">
           <span class="menu-toggle" @click="menuOpen = !menuOpen">меню</span>
           <ul v-if="menuOpen" class="dropdown">
-          <li>пока ничего :)</li>
-          <li>пока ничего :)</li>
-          <li>пока ничего :)</li>
-          <li>пока ничего :)</li>
-          <li>пока ничего :)</li>
+          <li><NuxtLink to="/merch">Мерч(заглушка)</NuxtLink></li>
           <li>пока ничего :)</li>
             <!-- <li><NuxtLink to="/extra1">доп. 1</NuxtLink></li>
             <li><NuxtLink to="/extra2">доп. 2</NuxtLink></li> -->
@@ -41,12 +37,11 @@ const logoMessage = ref('')
 // Массив забавных фраз для случайного выбора
 const funnyPhrases = [
   'сайт Grechka GK',
-  'сайт (не)спокойного человека ☕',
   'Вселенная бесконечна? 🌌',
-  'здесь мало чего полезного 🚀',
-  'tea one love 🖤',
-  'linux user ✍️',
-  '404: фраза не найдена',
+  'счастье в мелочах 🩵',
+  'tea - ❤️',
+  'linux user 🤓',
+  'let peace = true ',
 ]
 
 onMounted(async () => {
@@ -57,12 +52,12 @@ onMounted(async () => {
   await nextTick()
 
   if (month === 5) { // июнь
-    // logoMessage.value = 'June 🌈'
-    // animate('.logo', {
-    //   color: ['#FA5145', '#FD9F34', '#F9D81D', '#7FBE59', '#0394D7', '#502C79', '#FA5145'],
-    //   duration: 5000,
-    //   loop: true,
-    // })
+    logoMessage.value = 'June 🌈'
+    animate('.logo', {
+      color: ['#FA5145', '#FD9F34', '#F9D81D', '#7FBE59', '#0394D7', '#502C79', '#FA5145'],
+      duration: 5000,
+      loop: true,
+    })
   } else if (month === 0 && day === 1) { // 1 января
     logoMessage.value = 'New Year! 🎉'
     animate('.logo', {

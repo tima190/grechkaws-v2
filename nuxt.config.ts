@@ -1,5 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
+  },
   hooks: {
     'builder:watch': (event, path) => {
       if (path.endsWith('.md')) {
@@ -13,7 +20,13 @@ export default defineNuxtConfig({
   
   modules: ['@nuxt/content', '@nuxt/image', '@pinia/nuxt'],
   compatibilityDate: '2025-05-15',
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true
+    }
+  },
   css: ['~/assets/css/main.css'],
   content:{
     watch: {

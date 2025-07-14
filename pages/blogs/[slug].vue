@@ -20,7 +20,15 @@ useSeoMeta({
 </script>
 
 <template>
+  <a class="data">дата: {{ post.data || "не указана" }}</a>
   <TableOfContents/>
   <!-- Render the blog post as Prose & Vue components -->
   <ContentRenderer :value="post" />
 </template>
+
+<style scoped>
+.data {
+  opacity: 0.5;
+  margin-right: 20;
+}
+</style>

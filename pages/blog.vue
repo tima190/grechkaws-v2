@@ -7,7 +7,7 @@
         src="printing.png"
         width="256"
         height="256"
-        alt="Иллюстрация"
+        alt="Печатаю..."
         draggable="false"
       />
     </div>
@@ -47,7 +47,7 @@ useSeoMeta({
   padding: 2rem 1rem;
   background-color: var(--background-color);
   color: var(--primary-color);
-  font-family: system-ui, sans-serif;
+  font-family: system-ui;
 }
 
 /* Заголовок страницы */

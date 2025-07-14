@@ -1,0 +1,8 @@
+title: Футболка "be free"
+price: 2999
+description: Футболка для тех кто знает, что такое свобода
+variants:
+  - color: Белый
+    image: /img/merch/tshirt-befree-white.png
+  - color: Чёрный
+    image: /img/merch/tshirt-befree-black.png

@@ -18,10 +18,9 @@ onMounted(() => {
   if (preloader) {
     preloader.classList.add('hidden')
 
-    // Можно полностью удалить элемент после анимации, если хочешь
     setTimeout(() => {
       preloader.remove()
-    }, 600) // чуть больше, чем transition (0.5s)
+    }, 600)
   }
 })
 </script>

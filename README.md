@@ -1,6 +1,9 @@
-# Nuxt Minimal Starter
+# GrechkaWS V2
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+> САЙТ В ПРОЦЕССЕ РАЗРАБОТКИ
+
+Данный проект - сайт, посвящённый мне и моим достижениям. Весь код открыт и посты - тоже.
+
 
 ## Setup
 
