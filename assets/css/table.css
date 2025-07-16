@@ -7,6 +7,8 @@ table {
   font-style: italic;
   border: 2px solid #096B68;
   transition: background 0.2s;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
 }
 
 table thead {

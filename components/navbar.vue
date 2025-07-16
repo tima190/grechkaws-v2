@@ -15,6 +15,7 @@
           <span class="menu-toggle" @click="menuOpen = !menuOpen">меню</span>
           <ul v-if="menuOpen" class="dropdown">
           <li><NuxtLink to="/merch">Мерч(заглушка)</NuxtLink></li>
+          <li><a href="https://git.grechkagk.com"target="_blank"rel="noopener noreferrer">git сервис</a></li>
           <li>пока ничего :)</li>
             <!-- <li><NuxtLink to="/extra1">доп. 1</NuxtLink></li>
             <li><NuxtLink to="/extra2">доп. 2</NuxtLink></li> -->

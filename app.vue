@@ -7,11 +7,14 @@
     <div class="centered">
       <Navbar/>
       <NuxtPage />
+      <Footer />
     </div>
   </NuxtLayout>
 </template>
 
 <script setup>
+import Footer from './components/footer.vue'
+
 
 onMounted(() => {
   const preloader = document.getElementById('preloader')
