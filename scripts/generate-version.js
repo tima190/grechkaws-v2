@@ -22,8 +22,12 @@ async function generateVersion() {
   }
 
   fs.writeFileSync('./version.json', JSON.stringify(versionInfo, null, 2))
+  console.log('📌 Список тегов:', tagList)
   console.log('✔ Сгенерирован файл version.json:')
   console.log(versionInfo)
 }
+
+
+
 
 generateVersion()

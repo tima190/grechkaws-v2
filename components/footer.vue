@@ -3,9 +3,9 @@
     <div class="footer-content">
 
       <div class="footer-section">
-        <h4>текущая версия сайта - {{ version.tag || "не найдена" }}</h4>
+        <p>текущая версия сайта - {{ version.tag || "не найдена" }}</p>
         <ul>
-          <li>{{ version.full }}</li>
+          <li><a href="https://github.com/tima190/grechkaws-v2/commits/main/">{{ version.full }}</a></li>
         </ul>
       </div>
 

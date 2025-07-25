@@ -1,7 +1,7 @@
 {
-  "tag": null,
+  "tag": "0.1.2",
   "branch": "main",
-  "commit": "2c619b2",
-  "message": "0.1.1 commit added merch updated project",
-  "full": "main (2c619b2) — 0.1.1 commit added merch updated project"
+  "commit": "ca83b79",
+  "message": "added footer & ver generator (with git tag) changed navbar (+git) tried fix table on iphone",
+  "full": "0.1.2 (main) — added footer & ver generator (with git tag) changed navbar (+git) tried fix table on iphone"
 }

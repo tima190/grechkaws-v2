@@ -181,3 +181,17 @@ body {
     /* background-color: #FFFBDE;
     color: #129990 */
 }
+
+.art-image.fullscreen {
+  border: 2px solid var(--primary-color);
+  background-color: var(--background-color);
+}
+
+.grid-item {
+  border: 1px solid var(--secondary-bg);
+  background-color: var(--secondary-bg);
+}
+
+.grid-item:hover {
+  border-color: var(--secondary-color);
+}
