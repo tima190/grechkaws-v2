@@ -1,12 +1,12 @@
 <template>
-  <div v-if="!isHidden" class="ad" :class="{ expanded: isExpanded }">
-    <div v-if="isExpanded" class="ad-bg" :style="{ backgroundImage: `url(${image})` }" />
+  <div v-if="!isHidden && !isClosed" class="promo" :class="{ expanded: isExpanded }">
+    <div v-if="isExpanded" class="promo-bg" :style="{ backgroundImage: `url(${image})` }" />
 
-    <div class="ad-container">
-      <header class="ad-header">
-        <h1 class="ad-title">{{ name }}</h1>
-        <div class="ad-controls">
-          <icons-close-icon class="icon-close icon" @click="hideAd" />
+    <div class="promo-container">
+      <header class="promo-header">
+        <h1 class="promo-title">{{ name }}</h1>
+        <div class="promo-controls">
+          <icons-close-icon class="icon-close icon" @click="closePromo" />
           <button class="btn-toggle icon" @click="toggleExpand" :aria-expanded="isExpanded">
             <icons-down-icon />
           </button>
@@ -14,17 +14,15 @@
       </header>
 
       <transition name="slide-fade">
-        <section v-if="isExpanded" class="ad-body">
-          <p class="ad-desc">{{ description }}</p>
+        <section v-if="isExpanded" class="promo-body">
+          <p class="promo-desc">{{ description }}</p>
           <a :href="link" class="btn-primary">Перейти по ссылке</a>
-          <button class="btn-text" @click="hideAd">Больше не показывать эту чёртову рекламу!!!</button>
+          <button class="btn-text" @click="hidePromo">Больше не показывать!</button>
         </section>
       </transition>
     </div>
   </div>
-  <div v-else>
-    <p>🚫 Скрыто: {{ id }}</p>
-  </div>
+  <div v-else></div>
 </template>
 
 <script lang="ts" setup>
@@ -40,41 +38,46 @@ const props = defineProps<{
 }>()
 
 const isHidden = ref(false)
+const isClosed = ref(false)
 const isExpanded = ref(false)
 
-const makeAdKey = (id: string) => `ad-state:${id}`
+const makePromoKey = (id: string) => `promo-state:${id}`
 
-function getAdState(id: string) {
+function getPromoState(id: string) {
   if (typeof window === 'undefined') return { hidden: false, expanded: false }
-  const raw = localStorage.getItem(makeAdKey(id))
+  const raw = localStorage.getItem(makePromoKey(id))
   return raw ? JSON.parse(raw) : { hidden: false, expanded: false }
 }
 
-function setAdState(id: string, state: { hidden: boolean; expanded: boolean }) {
+function setPromoState(id: string, state: { hidden: boolean; expanded: boolean }) {
   if (typeof window === 'undefined') return
-  localStorage.setItem(makeAdKey(id), JSON.stringify(state))
+  localStorage.setItem(makePromoKey(id), JSON.stringify(state))
 }
 
 onMounted(() => {
-  const state = getAdState(props.id)
+  const state = getPromoState(props.id)
   isHidden.value = state.hidden
   isExpanded.value = state.expanded
 })
 
-function hideAd() {
+function closePromo() {
+  isClosed.value = true
+}
+
+function hidePromo() {
   isHidden.value = true
-  setAdState(props.id, { hidden: true, expanded: isExpanded.value })
+  isClosed.value = true
+  setPromoState(props.id, { hidden: true, expanded: isExpanded.value })
 }
 
 function toggleExpand() {
   isExpanded.value = !isExpanded.value
-  setAdState(props.id, { hidden: isHidden.value, expanded: isExpanded.value })
+  setPromoState(props.id, { hidden: isHidden.value, expanded: isExpanded.value })
 }
 </script>
 
-
 <style scoped>
-.ad {
+.promo {
   position: relative;
   border: 2px solid var(--primary-color);
   background-color: var(--background-color);
@@ -84,12 +87,11 @@ function toggleExpand() {
   font-family: inherit;
 }
 
-/* Раскрытый блок — фон-изображение */
-.ad.expanded {
+.promo.expanded {
   background: none;
 }
 
-.ad-bg {
+.promo-bg {
   position: absolute;
   inset: 0;
   background-size: cover;
@@ -99,8 +101,7 @@ function toggleExpand() {
   transition: opacity 0.3s ease;
 }
 
-/* Контейнер */
-.ad-container {
+.promo-container {
   position: relative;
   z-index: 1;
   padding: 0.3rem 1rem 0.3rem 1rem;
@@ -109,21 +110,20 @@ function toggleExpand() {
   gap: 0.75rem;
 }
 
-/* Заголовок и управление */
-.ad-header {
+.promo-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.ad-title {
+.promo-title {
   font-size: 1rem;
   font-weight: 600;
   color: var(--primary-color);
   margin: 0;
 }
 
-.ad-controls {
+.promo-controls {
   display: flex;
   gap: 0.25rem;
 }
@@ -138,20 +138,18 @@ function toggleExpand() {
   padding: 0.25rem;
 }
 
-/* Контент */
-.ad-body {
+.promo-body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.ad-desc {
+.promo-desc {
   font-size: 0.9rem;
   line-height: 1.4;
   color: var(--primary-color);
 }
 
-/* Кнопка */
 .btn-primary {
   align-self: start;
   padding: 0.4rem 0.75rem;
@@ -167,15 +165,15 @@ function toggleExpand() {
 }
 
 .btn-text {
-  font-size:0.7rem;
+  font-size: 0.7rem;
   opacity: 70%;
   border: none;
   color: var(--primary-color);
   background: transparent;
   text-decoration: none;
+  cursor: pointer;
 }
 
-/* Анимация */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.3s ease;
@@ -192,5 +190,4 @@ function toggleExpand() {
   opacity: 1;
   transform: translateY(0);
 }
-
 </style>

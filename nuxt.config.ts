@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import type { MarkdownPlugin } from '@nuxt/content' // если экспортируетсяc
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -31,7 +33,7 @@ export default defineNuxtConfig({
   content:{
     watch: {
       enabled: true,
-      port: 3001,
+      port: 3000,
       showURL: true,
     },
     build:{
@@ -55,13 +57,10 @@ export default defineNuxtConfig({
             'sql'
           ]
         },
-        remarkPlugins: {},
+        remarkPlugins: {
+        }},
         
       }
     }
     // Options
-  },
-  image: {
-    quality: 80
-  }
-})
+  })
