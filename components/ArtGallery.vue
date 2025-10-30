@@ -1,67 +1,39 @@
 <template>
   <div class="gallery">
     <div class="grid">
-      <div
-        v-for="(img, index) in images"
-        :key="img + index"
-        class="grid-item"
-        @click="toggleFullscreen(img)"
-      >
+      <div v-for="(img, index) in images" :key="img + index" class="grid-item" @click="toggleFullscreen(img)">
         <div class="image-wrapper">
-          <img
-            :src="getImagePath(img)"
-            :alt="`Artwork ${index + 1}`"
-            class="art-image"
-            draggable="false"
-          />
+          <NuxtImg :src="getImagePath(img)" :alt="`Artwork ${index + 1}`" class="art-image" draggable="false"
+            :quality="10" format="webp" loading="lazy" placeholder
+            sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 33vw" fit="cover" :width="400" :height="400"
+            :modifiers="{ progressive: true, stripMetadata: true }" />
 
           <div class="caption" @click.stop>
             <span class="caption-name">{{ fileName(img) }}</span>
             <span class="caption-actions">
-              <a
-                :href="getImagePath(img)"
-                :download="fileName(img)"
-                class="caption-btn"
-                @click.stop
-                aria-label="Download image"
-                title="Скачать"
-              >
-                скачать
-              </a>
-              <a
-                :href="getImagePath(img)"
-                target="_blank"
-                rel="noopener"
-                class="caption-btn"
-                @click.stop
-                aria-label="Open image in new tab"
-                title="Открыть в новой вкладке"
-              >
-                открыть
-              </a>
+              <a v-if="getImagePath(img) !== '/empty'" :href="getImagePath(img)" :download="fileName(img)"
+                class="caption-btn" @click.stop aria-label="Download image" title="Скачать">скачать</a>
+
+              <a v-if="getImagePath(img) !== '/empty'" :href="getImagePath(img)" target="_blank" rel="noopener"
+                class="caption-btn" @click.stop aria-label="Open image in new tab"
+                title="Открыть в новой вкладке">открыть</a>
+
             </span>
           </div>
         </div>
       </div>
     </div>
 
-    <div
-      v-if="fullscreenImage"
-      class="fullscreen-overlay"
-      @click="fullscreenImage = null"
-    >
-      <img
-        :src="getImagePath(fullscreenImage)"
-        class="fullscreen-image"
-        :alt="`Fullscreen artwork`"
-        @click.stop
-      />
+    <div v-if="fullscreenImage" class="fullscreen-overlay" @click="fullscreenImage = null">
+      <!-- fullscreen: максимально качественно, без принудительного webp и с большим quality -->
+      <img :src="getImagePath(fullscreenImage)" class="fullscreen-image" :alt="`Fullscreen artwork`" @click.stop />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { NuxtImg } from '#components'
 
 const images = ref([])
 const fullscreenImage = ref(null)
@@ -80,8 +52,11 @@ const getImagePath = (imgPath) => {
 }
 
 const toggleFullscreen = (img) => {
+  const path = getImagePath(img)
+  if (!path || path === '/empty') return
   fullscreenImage.value = img
 }
+
 
 const fileName = (imgPath) => {
   const path = getImagePath(imgPath)
@@ -139,7 +114,7 @@ const fileName = (imgPath) => {
   user-select: none;
   -webkit-user-drag: none;
   background: var(--background-color);
-  border: 1px solid rgba(0,0,0,0.04);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 /* плашка внутри фото */
@@ -149,7 +124,7 @@ const fileName = (imgPath) => {
   right: 6px;
   bottom: 6px;
   display: flex;
-  padding:0.3em;
+  padding: 0.3em;
   align-items: center;
   justify-content: space-between;
   opacity: 0;
@@ -212,8 +187,8 @@ const fileName = (imgPath) => {
   min-width: 16px;
   min-height: 16px;
   padding: 0.15rem 0.4rem;
-  border: 2px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--background-color);
   text-decoration: none;
   font-size: 0.95rem;
@@ -226,7 +201,7 @@ const fileName = (imgPath) => {
 /* hover / focus */
 .caption-btn:hover,
 .caption-btn:focus {
-  background: rgba(255,255,255,0.14);
+  background: rgba(255, 255, 255, 0.14);
   border-color: var(--secondary-color);
   outline: none;
 }

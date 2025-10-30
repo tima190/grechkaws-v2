@@ -15,12 +15,16 @@ useHead({
 
 useSeoMeta({
   title: post.value?.title + " - GrechkaWS",
-  description: post.value?.description
+  description: post.value?.description,
+})
+
+defineOgImage({
+  url: post.value.image
 })
 </script>
 
 <template>
-  <a class="data">дата: {{ post.data || "не указана" }}</a>
+  <a class="data">дата: {{ post.date || "не указана" }}</a>
   <TableOfContents/>
   <!-- Render the blog post as Prose & Vue components -->
   <ContentRenderer :value="post" />

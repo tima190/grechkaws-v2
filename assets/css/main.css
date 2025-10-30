@@ -80,6 +80,10 @@ body {
   color: var(--secondary-color);
 }
 
+strong {
+  color: var(--primary-color)
+}
+
 /* Таблица */
 table {
   background-color: var(--secondary-bg);

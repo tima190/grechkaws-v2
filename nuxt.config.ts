@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     }
   },
   
-  modules: ['@nuxt/content', '@nuxt/image', '@pinia/nuxt'],
+  modules: ['@nuxt/content', '@nuxt/image', '@pinia/nuxt', 'nuxt-og-image'],
   compatibilityDate: '2025-05-15',
   devtools: {
     enabled: true,
