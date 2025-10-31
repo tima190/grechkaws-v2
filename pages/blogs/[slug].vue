@@ -18,8 +18,13 @@ useSeoMeta({
   description: post.value?.description,
 })
 
-defineOgImage({
+/* defineOgImage({
   url: post.value.image
+}) */
+
+defineOgImageComponent('custom', {
+  title: post.value.title,
+  description: post.value.description
 })
 </script>
 
